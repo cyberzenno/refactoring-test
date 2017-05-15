@@ -1,27 +1,49 @@
-﻿using System;
+﻿using Refactoring.CodeTest.Interfaces;
+using System;
 using System.Configuration;
 using System.Linq;
 using System.Text;
 
 namespace Refactoring.CodeTest
 {
-    public class ObstacleService
+    public class ObstacleService : IObstacleService
     {
-        public Obstacle GetObstacle(int ObstacleId, bool isObstacleArchived)
+        private readonly IArchivedDataService archivedDataService;
+        private readonly IFailoverRepository failoverRepository;
+        private readonly IFailoverObstacleDataAccessProvider failoverObstacleDataAccessProvider;
+        private readonly IObstacleDataAccess obstacleDataAccess;
+        private readonly IConfigurationProvider configurationProvider;
+
+        public ObstacleService(
+            IArchivedDataService archivedDataService,
+            IFailoverRepository failoverRepository,
+            IFailoverObstacleDataAccessProvider failoverObstacleDataAccessProvider,
+            IObstacleDataAccess obstacleDataAccess,
+            IConfigurationProvider configurationProvider
+            )
+        {
+            this.archivedDataService = archivedDataService;
+            this.failoverRepository = failoverRepository;
+            this.failoverObstacleDataAccessProvider = failoverObstacleDataAccessProvider;
+            this.obstacleDataAccess = obstacleDataAccess;
+            this.configurationProvider = configurationProvider;
+        }
+
+        public Obstacle GetObstacle(int obstacleId, bool isObstacleArchived)
         {
             Obstacle archivedObstacle = null;
 
             if (isObstacleArchived)
             {
-                var archivedDataService = new ArchivedDataService();
-                archivedObstacle = archivedDataService.GetArchivedObstacle(ObstacleId);
+                //var archivedDataService = new ArchivedDataService();
+                archivedObstacle = archivedDataService.GetArchivedObstacle(obstacleId);
 
                 return archivedObstacle;
             }
             else
             {
-                var failoverRespository = new FailoverRepository();
-                var failoverEntries = failoverRespository.GetFailOverEntries();
+                //var failoverRespository = new FailoverRepository();
+                var failoverEntries = failoverRepository.GetFailOverEntries();
 
                 var failedRequests = 0;
 
@@ -33,30 +55,30 @@ namespace Refactoring.CodeTest
                     }
                 }
 
-                ObstacleResponse ObstacleResponse = null;
-                Obstacle Obstacle = null;
+                ObstacleResponse obstacleResponse = null;
+                Obstacle obstacle = null;
 
-                if (failedRequests > 100 && (ConfigurationManager.AppSettings["IsFailoverModeEnabled"] == "true" || ConfigurationManager.AppSettings["IsFailoverModeEnabled"] == "True"))
+                if (failedRequests > 100 && configurationProvider.IsFailoverModeEnabled())
                 {
-                    ObstacleResponse = FailoverObstacleDataAccess.GetObstacleById(ObstacleId);
+                    obstacleResponse = failoverObstacleDataAccessProvider.GetObstacleById(obstacleId);
                 }
                 else
                 {
-                    var dataAccess = new ObstacleDataAccess();
-                    ObstacleResponse = dataAccess.LoadObstacle(ObstacleId);
+                    //var dataAccess = new ObstacleDataAccess();
+                    obstacleResponse = obstacleDataAccess.LoadObstacle(obstacleId);
                 }
 
-                if (ObstacleResponse.IsArchived)
+                if (obstacleResponse.IsArchived)
                 {
-                    var archivedDataService = new ArchivedDataService();
-                    Obstacle = archivedDataService.GetArchivedObstacle(ObstacleId);
+                    //var archivedDataService = new ArchivedDataService();
+                    obstacle = archivedDataService.GetArchivedObstacle(obstacleId);
                 }
                 else
                 {
-                    Obstacle = ObstacleResponse.Obstacle;
+                    obstacle = obstacleResponse.Obstacle;
                 }
 
-                return Obstacle;
+                return obstacle;
             }
         }
     }

@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,9 +41,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArchivedDataService.cs" />
+    <Compile Include="ConfigurationProvider.cs" />
     <Compile Include="FailoverEntry.cs" />
+    <Compile Include="FailoverObstacleDataAccessProvider.cs" />
     <Compile Include="FailoverRepository.cs" />
     <Compile Include="FailoverObstacleDataAccess.cs" />
+    <Compile Include="Interfaces\IArchivedDataService.cs" />
+    <Compile Include="Interfaces\IConfigurationProvider.cs" />
+    <Compile Include="Interfaces\IFailoverObstacleDataAccessProvider.cs" />
+    <Compile Include="Interfaces\IFailoverRepository.cs" />
+    <Compile Include="Interfaces\IObstacleDataAccess.cs" />
+    <Compile Include="Interfaces\IObstacleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Obstacle.cs" />
     <Compile Include="ObstacleDataAccess.cs" />

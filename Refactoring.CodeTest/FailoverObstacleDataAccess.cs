@@ -4,7 +4,7 @@
     {
         public static ObstacleResponse GetObstacleById(int id)
         {
-            // Retrieve Obstacle from database
+            // Retrieve obstacle from database
             return new ObstacleResponse();
         }
     }

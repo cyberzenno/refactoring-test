@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Refactoring.CodeTest.Interfaces;
+using System.Collections.Generic;
 
 namespace Refactoring.CodeTest
 {
-    public class FailoverRepository
+    public class FailoverRepository : IFailoverRepository
     {
         public List<FailoverEntry> GetFailOverEntries()
         {

@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Refactoring.CodeTest", "Refactoring.CodeTest\Refactoring.CodeTest.csproj", "{910D9747-1ABF-4AB0-9B4C-267BF888C3C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Refactoring.CodeTest.UnitTests", "Refactoring.CodeTest.UnitTests\Refactoring.CodeTest.UnitTests.csproj", "{7F3349D8-C553-4802-A39C-D7E5192FC97E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{910D9747-1ABF-4AB0-9B4C-267BF888C3C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{910D9747-1ABF-4AB0-9B4C-267BF888C3C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{910D9747-1ABF-4AB0-9B4C-267BF888C3C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F3349D8-C553-4802-A39C-D7E5192FC97E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F3349D8-C553-4802-A39C-D7E5192FC97E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F3349D8-C553-4802-A39C-D7E5192FC97E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F3349D8-C553-4802-A39C-D7E5192FC97E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

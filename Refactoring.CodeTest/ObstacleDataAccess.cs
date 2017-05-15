@@ -1,10 +1,11 @@
-﻿namespace Refactoring.CodeTest
+﻿using Refactoring.CodeTest.Interfaces;
+namespace Refactoring.CodeTest
 {
-    public class ObstacleDataAccess
+    public class ObstacleDataAccess :IObstacleDataAccess
     {
-        public ObstacleResponse LoadObstacle(int ObstacleId)
+        public ObstacleResponse LoadObstacle(int obstacleId)
         {
-            // Retrieve Obstacle from 3rd party webservice
+            // Retrieve obstacle from 3rd party webservice
             return new ObstacleResponse();
         }
     }

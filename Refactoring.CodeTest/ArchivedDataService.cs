@@ -1,10 +1,11 @@
-﻿namespace Refactoring.CodeTest
+﻿using Refactoring.CodeTest.Interfaces;
+namespace Refactoring.CodeTest
 {
-    public class ArchivedDataService
+    public class ArchivedDataService : IArchivedDataService
     {
-        public Obstacle GetArchivedObstacle(int ObstacleId)
+        public Obstacle GetArchivedObstacle(int obstacleId)
         {
-            // Retrieve Obstacle from archived data service
+            // Retrieve obstacle from archived data service
             return new Obstacle();
         }
     }
