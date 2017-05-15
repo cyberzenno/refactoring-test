@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 namespace Refactoring.CodeTest.Interfaces
 {
     public interface IFailoverRepository
     {
-        System.Collections.Generic.List<FailoverEntry> GetFailOverEntries();
+        List<FailoverEntry> GetFailOverEntries();
+        int CountFailoverEntriesForTheLastMinutes(int minutes);
     }
 }
